@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './App.css'
 import BouncingLetter from './BouncingLetter.tsx';
+import MiniCarousel from './MiniCarousel'; // Importe o componente
 
 function App() {
   const text = "Gabriel & Isabella";
@@ -75,7 +76,7 @@ function App() {
   return (
     <>
     <div className='container-grid'>
-      <div>
+      <div className="App_caro">
         <div className="App">
           <h1 className="App-header">
             {text.split('').map((char, index) => (
@@ -90,7 +91,7 @@ function App() {
             ))}
           </h1>
         </div>
-        {/* Exibindo o contador de tempo passado */}
+        <MiniCarousel autoPlayInterval={4000} /> {/* Você pode passar o intervalo de autoplay */}
         <div className="texto-detalhado">
          
           <span> <strong>{formatNumber(tempoPassado.anos)}</strong></span> Anos,
@@ -103,8 +104,8 @@ function App() {
           <br />
           <span> <strong>{formatNumber(tempoPassado.segundos)}</strong></span> Segundos.
         </div>
-      </div>
-      </div>
+    </div>
+    </div>
     </>
         );
 }

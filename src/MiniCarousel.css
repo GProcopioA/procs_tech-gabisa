@@ -1,0 +1,106 @@
+/* src/MiniCarousel.css */
+
+.mini-carousel-container {
+  /* Definindo o tamanho máximo do carrossel para que não ocupe a tela toda */
+  max-width: 350px; /* Largura máxima, ajuste conforme a necessidade */
+  max-height: 250px auto; /* Altura máxima, ajuste conforme a necessidade (proporcional à imagem) */
+  margin: 20px auto; /* Centraliza o carrossel na página e dá um espaçamento */
+  border: 3px solid rgb(166, 8, 8);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Garante que as imagens que não estão visíveis fiquem escondidas */
+  position: relative; /* Para posicionar controles e dots */
+  border-radius: 8px; /* Cantos arredondados */
+}
+
+.carousel-images {
+  display: flex; /* Permite que as imagens fiquem lado a lado */
+  height: 100%; /* Ocupa a altura total do contêiner pai */
+  transition: transform 0.5s ease-in-out; /* Transição suave ao trocar de imagem */
+}
+
+.carousel-images img {
+  width: 100%; /* Cada imagem ocupa 100% da largura do contêiner do carrossel */
+  height: 100%; /* Cada imagem ocupa 100% da altura do contêiner do carrossel */
+  flex-shrink: 0; /* Impede que as imagens encolham */
+  object-fit: cover; /* Garante que a imagem cubra o espaço, cortando se necessário */
+  display: block; /* Remove espaçamento extra abaixo da imagem */
+}
+
+/* Controles de navegação (botões e dots) */
+.carousel-controls {
+  position: absolute;
+  bottom: 10px; /* Perto da base do carrossel */
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between; /* Espaço entre os botões e os dots */
+  align-items: center;
+  padding: 0 10px;
+  z-index: 10; /* Garante que os controles fiquem acima das imagens */
+}
+
+.control-button {
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 50%; /* Botões redondos */
+  font-size: 1.2em;
+  line-height: 1; /* Alinha o texto no centro */
+  transition: background-color 0.3s ease;
+}
+
+.control-button:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.carousel-dots {
+  display: flex;
+  gap: 5px; /* Espaço entre os dots */
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.5); /* Dots semi-transparentes */
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.dot.active {
+  background-color: #fff; /* Dot ativo branco */
+  transform: scale(1.2); /* Aumenta um pouco o dot ativo */
+}
+
+/* === Responsividade para Celular === */
+/* Em telas menores, ajuste o tamanho para que não fique muito grande */
+@media (max-width: 768px) {
+  .mini-carousel-container {
+    max-width: 90%; /* Ocupa 90% da largura da tela em dispositivos menores */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .control-button {
+    padding: 6px 10px; /* Diminui um pouco os botões */
+    font-size: 1em;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mini-carousel-container {
+    max-width: 95%; /* Quase toda a largura em telas muito pequenas */
+  }
+
+  /* Opcional: esconder os botões de controle e confiar nos dots ou gestos de deslizar */
+  /* .control-button {
+    display: none;
+  } */
+}

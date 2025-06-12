@@ -1,13 +1,10 @@
 import { useState, useEffect } from 'react';
-
-// Importe suas imagens locais aqui
-// // Certifique-se de que os caminhos estejam corretos de acordo com a estrutura do seu projeto
-import fotoLocal1 from './assets/foto1.jpeg'; // Exemplo: crie esta imagem ou ajuste o caminho
-import fotoLocal2 from './assets/foto2.jpeg'; // Exemplo: crie esta imagem ou ajuste o caminho
-import fotoLocal3 from './assets/foto3.jpeg'; // Exemplo: crie esta imagem ou ajuste o caminho
-import fotoLocal4 from './assets/foto4.jpeg'; // Exemplo: crie esta imagem ou ajuste o caminho
+import './App.css'
+import BouncingLetter from './BouncingLetter.tsx';
 
 function App() {
+  const text = "Gabriel & Isabella";
+  const textData = "21/02/2025";
   // --- Lógica para o contador de tempo passado (dias, semanas, meses, anos) ---
   const calcularTempoPassado = () => {
     // Definir a data de início (21 de fevereiro de 2025)
@@ -75,53 +72,36 @@ function App() {
     return new Intl.NumberFormat('pt-BR').format(num);
   };
 
-  // // --- Lógica para o Carrossel de Fotos ---
-  // // Array de URLs de imagens agora usa as imagens locais importadas
-  const images = [
-    fotoLocal1,
-    fotoLocal2,
-    fotoLocal3,
-    fotoLocal4,
-    // Adicione mais fotos locais aqui
-  ];
-
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  // Função para ir para a próxima imagem
-  const nextImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
-
-  // Função para ir para a imagem anterior
-  const prevImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
-  };
-
-  // Efeito para auto-play do carrossel (opcional)
-  useEffect(() => {
-    const carouselInterval = setInterval(nextImage, 5000); // Troca de imagem a cada 5 segundos
-
-    // Limpa o intervalo quando o componente é desmontado
-    return () => clearInterval(carouselInterval);
-  }, [currentImageIndex]); // Adiciona currentImageIndex como dependência para reiniciar o timer a cada troca
-
   return (
-    // Não inclua o script do Tailwind CSS diretamente no JSX de um componente React.
-    // Ele deve ser configurado no seu `index.html` ou através do processo de build do seu projeto (e.g., com Create React App, Vite).
-    // Removendo: <script src="https://cdn.tailwindcss.com"></script>
     <>
       <div>
-        <h1>
-          Contador de Tempo e Momentos
-        </h1>
+        <h2 className="texto-detalhado1">
+          Contador de Tempo
+        </h2>
+      <div className="App">
+      <h1 className="App-header">
+        {text.split('').map((char, index) => (
+          <BouncingLetter key={index} letter={char} />
+        ))}
+      </h1>
+    </div>
+      <div className="App">
+      <h1 className="App-header">
+        {textData.split('.').map((char, index) => (
+          <BouncingLetter key={index} letter={char} />
+        ))}
+      </h1>
+    </div>
+        {/* <h1 className="texto-detalhado">
+          Gabriel & Isabella
+        </h1> */}
 
 
         {/* Exibindo o contador de tempo passado */}
-        <div>
-          <h1>
+        <div className="texto-detalhado">
+          {/* <h2 className="texto-detalhado">
             21/02/2025
-          </h1>
-          <br />
+          </h2> */}
           <span> <strong>{formatNumber(tempoPassado.anos)}</strong></span> Anos,
           <span> <strong>{formatNumber(tempoPassado.meses)}</strong></span> Meses,
           <span> <strong>{formatNumber(tempoPassado.semanas)}</strong></span> Semanas,
@@ -131,47 +111,6 @@ function App() {
           <span> <strong>{formatNumber(tempoPassado.minutos)}</strong></span> Minutos
           <br />
           <span> <strong>{formatNumber(tempoPassado.segundos)}</strong></span> Segundos.
-          <p>
-            (Total de dias: <strong>{formatNumber(tempoPassado.dias)}</strong>)
-          </p>
-          <p>
-            (Total de semanas: <strong>{formatNumber(tempoPassado.semanas)}</strong>)
-          </p>
-        </div>
-      </div>
-      {/* Carrossel de Fotos */}
-      <div className="relative w-11/12 mx-auto max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl
-                      mb-6 sm:mb-8 bg-white p-3 sm:p-4 rounded-lg shadow-xl overflow-hidden
-                      flex items-center justify-center min-h-[250px] sm:min-h-[350px] md:min-h-[450px]"> {/* Adicionado mx-auto para centralizar */}
-        <button
-          onClick={prevImage}
-          className="absolute left-2 p-2 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 z-10 transition-all duration-300 transform hover:scale-105
-                     sm:p-3 sm:left-4"
-          aria-label="Previous image"
-        >
-          &lt;
-        </button>
-        <img
-          src={images[currentImageIndex]}
-          alt={`Imagem ${currentImageIndex + 1}`}
-          className="w-full h-full object-cover rounded-lg transform transition-transform duration-500 ease-in-out scale-100 hover:scale-105" />
-        <button
-          onClick={nextImage}
-          className="absolute right-2 p-2 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 z-10 transition-all duration-300 transform hover:scale-105
-                     sm:p-3 sm:right-4"
-          aria-label="Next image"
-        >
-          &gt;
-        </button>
-        <div className="absolute bottom-4 flex space-x-2 sm:space-x-2.5">
-          {images.map((_, index) => (
-            <span
-              key={index}
-              className={`block w-3 h-3 sm:w-2.5 sm:h-2.5 rounded-full ${currentImageIndex === index ? 'bg-blue-600' : 'bg-gray-300'} cursor-pointer transition-colors duration-300`}
-              onClick={() => setCurrentImageIndex(index)}
-              aria-label={`Go to image ${index + 1}`}
-            ></span>
-          ))}
         </div>
       </div>
     </>

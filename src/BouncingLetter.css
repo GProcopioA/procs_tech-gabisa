@@ -1,0 +1,33 @@
+/* src/BouncingLetter.css */
+
+.bouncing-letter {
+  display: inline-block; /* Importante para que a transformação funcione corretamente */
+  cursor: pointer; /* Indica que é interativo */
+  transition: transform 0.1s ease-out; /* Transição suave para o início da animação */
+}
+
+.bouncing-letter.bounce {
+  animation: bounce 0.7s ease-in-out; /* Nome da animação, duração, timing-function */
+}
+
+/* Keyframes da animação de quicar */
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(-20px); /* Sobe */
+  }
+  40% {
+    transform: translateY(0); /* Desce */
+  }
+  60% {
+    transform: translateY(-10px); /* Sobe um pouco menos */
+  }
+  80% {
+    transform: translateY(0); /* Desce novamente */
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

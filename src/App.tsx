@@ -74,34 +74,25 @@ function App() {
 
   return (
     <>
+    <div className='container-grid'>
       <div>
-        <h2 className="texto-detalhado1">
-          Contador de Tempo
-        </h2>
-      <div className="App">
-      <h1 className="App-header">
-        {text.split('').map((char, index) => (
-          <BouncingLetter key={index} letter={char} />
-        ))}
-      </h1>
-    </div>
-      <div className="App">
-      <h1 className="App-header">
-        {textData.split('.').map((char, index) => (
-          <BouncingLetter key={index} letter={char} />
-        ))}
-      </h1>
-    </div>
-        {/* <h1 className="texto-detalhado">
-          Gabriel & Isabella
-        </h1> */}
-
-
+        <div className="App">
+          <h1 className="App-header">
+            {text.split('').map((char, index) => (
+            <BouncingLetter key={index} letter={char} />
+            ))}
+          </h1>
+        </div>
+        <div className="App">
+          <h1 className="App-header">
+            {textData.split('.').map((char, index) => (
+            <BouncingLetter key={index} letter={char} />
+            ))}
+          </h1>
+        </div>
         {/* Exibindo o contador de tempo passado */}
         <div className="texto-detalhado">
-          {/* <h2 className="texto-detalhado">
-            21/02/2025
-          </h2> */}
+         
           <span> <strong>{formatNumber(tempoPassado.anos)}</strong></span> Anos,
           <span> <strong>{formatNumber(tempoPassado.meses)}</strong></span> Meses,
           <span> <strong>{formatNumber(tempoPassado.semanas)}</strong></span> Semanas,
@@ -112,6 +103,7 @@ function App() {
           <br />
           <span> <strong>{formatNumber(tempoPassado.segundos)}</strong></span> Segundos.
         </div>
+      </div>
       </div>
     </>
         );

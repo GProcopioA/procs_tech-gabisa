@@ -27,7 +27,7 @@
 }
 .container-grid{
   display: grid; /* Habilita o CSS Grid */
-  place-items: center;
-  min-height: 100vh; /* Exemplo: ocupa 100% da altura da viewport */
+  flex-direction: column;
+  place-items: center;/* Exemplo: ocupa 100% da altura da viewport */
   width: 100%;
 }
